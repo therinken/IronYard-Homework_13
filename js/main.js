@@ -6,33 +6,34 @@ $.get(url).then(function(data) {
 
 function drawProfile(data) {
     document.body.innerHTML = [
-        '<li><a href="#">',
+        '<div class="flex-item">',
         data.name,
-        '</a></li>',
-        '<li><a href="#">',
+        '</div>',
+        '<div class="flex-item">',
         ' Company: ',
         data.company,
-        '</a></li>',
-        '<li><a href="#">',
+        '</div>',
+        '<div class="flex-item">',
         ' Blog: ',
         data.blog,
-        '</a></li>',
-        '<li><a href="#">',
+        '</div>',
+        '<div class="flex-item">',
         ' Location: ',
         data.location,
-        '</a></li>'
-        '<li><a href="#">',
+        '</div>',
+        '<div class="flex-item">',
         ' Email: ',
         data.email,
-        '</a></li>',
-        '<li><a href="#">',
+        '</div>',
+        '<div class="flex-item">',
         ' Avatar:',
         data.avatar_url,
-        '</a></li>',
-        '<li><a href="#">'
+        '</div>',
+        '<div class="flex-item">',
         ' Github: ',
         data.html_url,
-        '</a></li>'
+        '</div>',
+        '</div>'
 
     ].join('')
 }
