@@ -1,39 +1,17 @@
-var githubUsername = "therinken";
-var url = "https://api.github.com/users/" + githubUsername;
-$.get(url).then(function(data) {
-    drawProfile(data);
-})
+_.templateSettings.interpolate = /{([\s\S]+?)}/g;
 
-function drawProfile(data) {
-    document.body.innerHTML = [
-        '<div class="flex-item">',
-        data.name,
-        '</div>',
-        '<div class="flex-item">',
-        ' Company: ',
-        data.company,
-        '</div>',
-        '<div class="flex-item">',
-        ' Blog: ',
-        data.blog,
-        '</div>',
-        '<div class="flex-item">',
-        ' Location: ',
-        data.location,
-        '</div>',
-        '<div class="flex-item">',
-        ' Email: ',
-        data.email,
-        '</div>',
-        '<div class="flex-item">',
-        ' Avatar:',
-        data.avatar_url,
-        '</div>',
-        '<div class="flex-item">',
-        ' Github: ',
-        data.html_url,
-        '</div>',
-        '</div>'
+var gitProBasic = [
+    '<img src="{avatar_url}">',
+        '<h1>{name}</h1>',
+        '<ul class="flex-container">',
+            '<li class="flex-item"> email: {email} </li>',
+            '<li class="flex-item"> Location: {location} </li>',
+            '<li class="flex-item"> Blog: {blog} </li>',
+        '</ul>'
+].join('');
 
-    ].join('')
+function writeToDom(data) {
+    document.body.innerHTML = _.template(gitProBasic, data);
 }
+
+$.getJSON("https://api.github.com/users/therinken").then(writeToDom)
